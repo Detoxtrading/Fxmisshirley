@@ -1,38 +1,105 @@
-// =========================
+// ===============================
 // TELEGRAM BUTTONS
-// =========================
+// ===============================
 
-const telegramLinks = [
-  document.getElementById("join"),
-  document.getElementById("join2"),
-  document.getElementById("floatBtn")
-];
+const telegramURL = "https://t.me/fxmisshirley";
+const telegramApp = "tg://resolve?domain=fxmisshirley";
 
-telegramLinks.forEach(btn => {
-  if (!btn) return;
+function openTelegram(e){
 
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
+if(e) e.preventDefault();
 
-    // Try opening Telegram app
-    window.location.href = "tg://resolve?domain=fxmisshirley";
+window.location.href = telegramApp;
 
-    // Fallback to browser
-    setTimeout(() => {
-      window.location.href = "https://t.me/fxmisshirley";
-    }, 700);
-  });
+setTimeout(()=>{
+
+window.location.href = telegramURL;
+
+},700);
+
+}
+
+[
+"joinTop",
+"joinHero",
+"joinBottom",
+"joinFinal",
+"floatingTelegram"
+
+].forEach(id=>{
+
+const btn=document.getElementById(id);
+
+if(btn){
+
+btn.addEventListener("click",openTelegram);
+
+}
+
 });
 
 
-// =========================
-// LIVE MEMBER POPUPS
-// =========================
+// ===============================
+// FAQ ACCORDION
+// ===============================
 
-const popup = document.getElementById("popup");
-const popupName = document.getElementById("popupName");
+const questions=document.querySelectorAll(".faq-question");
 
-const members = [
+questions.forEach(question=>{
+
+question.addEventListener("click",()=>{
+
+const answer=question.nextElementSibling;
+
+const icon=question.querySelector("span");
+
+document.querySelectorAll(".faq-answer").forEach(item=>{
+
+if(item!==answer){
+
+item.style.display="none";
+
+}
+
+});
+
+document.querySelectorAll(".faq-question span").forEach(i=>{
+
+if(i!==icon){
+
+i.innerHTML="+";
+
+}
+
+});
+
+if(answer.style.display==="block"){
+
+answer.style.display="none";
+
+icon.innerHTML="+";
+
+}else{
+
+answer.style.display="block";
+
+icon.innerHTML="−";
+
+}
+
+});
+
+});
+
+
+// ===============================
+// LIVE JOIN POPUP
+// ===============================
+
+const popup=document.getElementById("joinPopup");
+const popupName=document.getElementById("popupName");
+
+const names=[
 
 "Michael 🇬🇧",
 "Emma 🇦🇺",
@@ -40,36 +107,34 @@ const members = [
 "James 🇺🇸",
 "Oliver 🇩🇪",
 "Lucas 🇧🇷",
-"Sophia 🇳🇿",
+"Noah 🇳🇱",
 "William 🇮🇪",
-"Jack 🇸🇬",
-"Benjamin 🇦🇪",
-"Henry 🇿🇦",
 "Ethan 🇫🇷",
-"Alexander 🇳🇱",
-"Noah 🇸🇪",
-"Liam 🇳🇴"
+"Henry 🇸🇬",
+"Sophia 🇳🇿",
+"Benjamin 🇦🇪",
+"Liam 🇳🇴",
+"Jack 🇸🇪"
 
 ];
 
-function randomMember(){
+function showPopup(){
 
-const random =
-members[Math.floor(Math.random()*members.length)];
+const random=names[Math.floor(Math.random()*names.length)];
 
-popupName.innerHTML = random;
+popupName.innerHTML=random;
 
-popup.style.display = "block";
+popup.style.display="flex";
 
-popup.style.opacity = "1";
+popup.style.opacity="1";
 
-popup.style.transform = "translateY(0px)";
+popup.style.transform="translateY(0px)";
 
 setTimeout(()=>{
 
 popup.style.opacity="0";
 
-popup.style.transform="translateY(20px)";
+popup.style.transform="translateY(30px)";
 
 setTimeout(()=>{
 
@@ -81,52 +146,72 @@ popup.style.display="none";
 
 }
 
-setTimeout(randomMember,3000);
+setTimeout(showPopup,3000);
 
-setInterval(randomMember,9000);
+setInterval(showPopup,9000);
 
 
-// =========================
-// COUNTER ANIMATION
-// =========================
+// ===============================
+// NUMBER ANIMATION
+// ===============================
 
-const counters = document.querySelectorAll(".stats h2");
+const counters=document.querySelectorAll(".number-box h2");
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+animate(entry.target);
+
+observer.unobserve(entry.target);
+
+}
+
+});
+
+});
 
 counters.forEach(counter=>{
 
-const update=()=>{
+observer.observe(counter);
 
-const target = counter.innerText;
+});
 
-const number = parseInt(target.replace(/\D/g,''));
+function animate(counter){
 
-let current = 0;
+const text=counter.innerText;
 
-const speed = number/80;
+const number=parseInt(text.replace(/\D/g,""));
 
-const timer = setInterval(()=>{
+let current=0;
 
-current += speed;
+const step=Math.max(1,Math.ceil(number/80));
 
-if(current >= number){
+const timer=setInterval(()=>{
 
-counter.innerText = target;
+current+=step;
+
+if(current>=number){
+
+counter.innerText=text;
 
 clearInterval(timer);
 
 }else{
 
-if(target.includes("%")){
+if(text.includes("%")){
 
-counter.innerText=Math.floor(current)+"%";
+counter.innerText=current+"%";
 
-}else if(target.includes("+")){
+}else if(text.includes("+")){
 
-counter.innerText=Math.floor(current)+"+";
+counter.innerText=current+"+";
 
 }else{
 
-counter.innerText=Math.floor(current);
+counter.innerText=current;
 
 }
 
@@ -136,16 +221,18 @@ counter.innerText=Math.floor(current);
 
 }
 
-update();
 
-});
-
-
-// =========================
+// ===============================
 // SCROLL ANIMATION
-// =========================
+// ===============================
 
-const observer = new IntersectionObserver(entries=>{
+const cards=document.querySelectorAll(
+
+".feature-card,.review-card,.number-box,.faq-item"
+
+);
+
+const reveal=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
@@ -161,28 +248,39 @@ entry.target.style.transform="translateY(0px)";
 
 });
 
-document.querySelectorAll(".card,.review-card,.faq-box").forEach(el=>{
+cards.forEach(card=>{
 
-el.style.opacity="0";
+card.style.opacity="0";
 
-el.style.transform="translateY(40px)";
+card.style.transform="translateY(40px)";
 
-el.style.transition=".8s";
+card.style.transition=".7s";
 
-observer.observe(el);
+reveal.observe(card);
 
 });
 
 
-// =========================
-// YEAR
-// =========================
+// ===============================
+// HEADER SHADOW
+// ===============================
 
-const copy = document.querySelector(".copy");
+window.addEventListener("scroll",()=>{
 
-if(copy){
+const header=document.querySelector(".header");
 
-copy.innerHTML =
-"© " + new Date().getFullYear() + " Laura FX Mentorship. All Rights Reserved.";
+if(window.scrollY>50){
+
+header.style.background="rgba(0,0,0,.85)";
+
+header.style.boxShadow="0 10px 30px rgba(0,0,0,.45)";
+
+}else{
+
+header.style.background="rgba(0,0,0,.55)";
+
+header.style.boxShadow="none";
 
 }
+
+});
