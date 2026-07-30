@@ -469,3 +469,313 @@ margin-bottom:10px;
 font-size:16px;
 color:#bdbdbd;
 }
+/* =========================
+   FAQ
+========================= */
+
+.faq{
+padding:110px 8%;
+}
+
+.faq-container{
+max-width:900px;
+margin:auto;
+}
+
+.faq-item{
+background:#111;
+border:1px solid rgba(255,255,255,.06);
+border-radius:18px;
+margin-bottom:18px;
+overflow:hidden;
+transition:.3s;
+}
+
+.faq-item:hover{
+border-color:#d4af37;
+}
+
+.faq-question{
+width:100%;
+background:none;
+border:none;
+padding:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:18px;
+font-weight:600;
+color:#fff;
+cursor:pointer;
+}
+
+.faq-question span{
+font-size:28px;
+color:#d4af37;
+}
+
+.faq-answer{
+display:none;
+padding:0 24px 24px;
+}
+
+.faq-answer p{
+color:#bdbdbd;
+line-height:1.8;
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.final-cta{
+padding:120px 8%;
+text-align:center;
+background:linear-gradient(180deg,#090909,#050505);
+}
+
+.final-cta h2{
+font-size:52px;
+margin-bottom:18px;
+}
+
+.final-cta p{
+max-width:700px;
+margin:0 auto 40px;
+font-size:18px;
+color:#bdbdbd;
+}
+
+.final-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:20px 48px;
+background:#d4af37;
+color:#000;
+font-weight:700;
+font-size:18px;
+border-radius:60px;
+transition:.35s;
+box-shadow:0 0 35px rgba(212,175,55,.35);
+}
+
+.final-btn:hover{
+transform:translateY(-5px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+padding:70px 8%;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+background:#050505;
+}
+
+.footer-logo{
+width:90px;
+height:90px;
+border-radius:50%;
+object-fit:cover;
+margin:0 auto 20px;
+border:2px solid #d4af37;
+box-shadow:0 0 35px rgba(212,175,55,.35);
+}
+
+footer h3{
+font-size:30px;
+margin-bottom:15px;
+}
+
+footer p{
+color:#999;
+}
+
+.footer-links{
+display:flex;
+justify-content:center;
+gap:30px;
+margin:35px 0;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+color:#d4af37;
+transition:.3s;
+}
+
+.footer-links a:hover{
+color:#fff;
+}
+
+.copyright{
+font-size:14px;
+color:#777;
+}
+
+/* =========================
+   FLOATING TELEGRAM
+========================= */
+
+.floating-btn{
+position:fixed;
+right:25px;
+bottom:25px;
+width:68px;
+height:68px;
+background:#d4af37;
+color:#000;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+box-shadow:0 0 35px rgba(212,175,55,.45);
+z-index:999;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+
+}
+
+/* =========================
+   LIVE POPUP
+========================= */
+
+.join-popup{
+position:fixed;
+left:20px;
+bottom:20px;
+background:#111;
+padding:18px;
+border-radius:18px;
+display:none;
+align-items:center;
+gap:15px;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 15px 40px rgba(0,0,0,.45);
+z-index:998;
+}
+
+.popup-dot{
+width:12px;
+height:12px;
+background:#00ff66;
+border-radius:50%;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+50%{
+opacity:.4;
+}
+
+}
+
+.join-popup h4{
+color:#d4af37;
+margin-bottom:4px;
+}
+
+.join-popup p{
+font-size:14px;
+color:#aaa;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+.header{
+padding:16px 20px;
+}
+
+nav{
+display:none;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+padding:130px 24px 80px;
+gap:50px;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+margin:0 auto 35px;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+.hero-stats{
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.hero-image img{
+width:240px;
+height:240px;
+}
+
+.features,
+.reviews,
+.faq,
+.cta,
+.final-cta{
+padding:80px 24px;
+}
+
+.features h2,
+.section-title h2,
+.final-cta h2,
+.cta h2{
+font-size:34px;
+}
+
+.feature-grid,
+.review-grid{
+grid-template-columns:1fr;
+}
+
+.numbers{
+grid-template-columns:1fr 1fr;
+}
+
+.footer-links{
+gap:18px;
+}
+
+.join-popup{
+left:15px;
+right:15px;
+bottom:95px;
+}
+
+.floating-btn{
+width:60px;
+height:60px;
+font-size:28px;
+right:18px;
+bottom:18px;
+}
+
+}
